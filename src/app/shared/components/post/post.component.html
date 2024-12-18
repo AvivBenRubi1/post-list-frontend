@@ -1,19 +1,12 @@
-<p-card [style]="{ width: '25rem', overflow: 'hidden' }">
-    <ng-template pTemplate="header">
-        <img alt="Card" class="w-full" src="https://primefaces.org/cdn/primeng/images/card-ng.jpg" />
-    </ng-template>
+<p-card [style]="{ width: '20rem', overflow: 'hidden', }">
     <ng-template pTemplate="title">{{post.title}}</ng-template>
     <ng-template pTemplate="subtitle">{{post.author}}</ng-template>
-    <p>
-        {{post.content}}
-    </p>
+    <ng-template pTemplate="content">{{post.content}}</ng-template>
     <ng-template pTemplate="footer">
-        <div class="flex gap-4 mt-1 ">
-        <p-button label="Like"/>
-    </div>
-        <div class="flex gap-4 mt-2">
-            <p-button label="Delete" severity="danger"/>
-            <p-button label="Update" severity="success" />
-        </div>
+        <div class="flex gap-2">
+                <p-button label="{{post.likes}}" icon="pi pi-thumbs-up" class="p-button-sm"></p-button>
+                <p-button  icon="pi pi-trash" severity="danger" class="p-button-sm"></p-button>
+                <p-button icon="pi pi-pencil" severity="success" class="p-button-sm"></p-button>
+            </div>
     </ng-template>
 </p-card>

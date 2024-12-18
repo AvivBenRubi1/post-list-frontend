@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Post } from '../models/post.model';
 import { CreatePostDto } from '../dtos/create-post.dto';
 
 @Injectable()
 export class PostService {
-  private baseUrl = 'https://localhost:7037/posts'; // Replace with your API base URL
-
+  private baseUrl = 'https://localhost:7271/test';
+  
   constructor(private http: HttpClient) {}
 
   // Create a new post

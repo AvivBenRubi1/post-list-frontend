@@ -26,6 +26,10 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.refreshPosts();
   }
+  deletePost(id: number) {
+    this.postService.deletePost(id).subscribe();
+    this.refreshPosts();
+  }
   posts: Array<Post>;
 
 }

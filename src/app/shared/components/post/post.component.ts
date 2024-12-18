@@ -14,12 +14,11 @@ import { PostService } from '../../../services/post.service';
 })
 export class PostComponent {
   constructor(private postService: PostService) { }
+  @Output() deletePost = new EventEmitter<number>(); // EventEmitter to notify parent
 
-  deletePost() {
-    this.postService.deletePost(this.post.id).subscribe();
-    this.refreshPosts();
+  onDelete(): void {
+    this.deletePost.emit(this.post.id); // Emit the post ID to the parent
   }
   
   @Input() post: Post;
-  @Input() refreshPosts: () => void;
 }

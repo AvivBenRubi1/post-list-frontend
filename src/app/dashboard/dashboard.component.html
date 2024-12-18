@@ -6,6 +6,6 @@
 
 
     <div class="item-list grid gap-2 grid-cols-1 lg:grid-cols-3 mx-auto my-4 w-full">
-        <app-post *ngFor="let post of posts" [post]="post"></app-post>
+        <app-post *ngFor="let post of posts" [post]="post" [refreshPosts]="refreshPosts"></app-post>
     </div> <!-- Your HTML code goes right here -->
 </div>

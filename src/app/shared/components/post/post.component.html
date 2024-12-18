@@ -5,7 +5,7 @@
     <ng-template pTemplate="footer">
         <div class="flex gap-2">
                 <p-button label="{{post.likes}}" icon="pi pi-thumbs-up" class="p-button-sm"></p-button>
-                <p-button  icon="pi pi-trash" severity="danger" class="p-button-sm"></p-button>
+                <p-button  icon="pi pi-trash" severity="danger" class="p-button-sm" (onClick)="deletePost()"></p-button>
                 <p-button icon="pi pi-pencil" severity="success" class="p-button-sm"></p-button>
             </div>
     </ng-template>

@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { Post } from '../models/post.model';
 import { CreatePostDto } from '../dtos/create-post.dto';
+import { Filters } from '../enums/filters.enum';
 
 @Injectable()
 export class PostService {
@@ -36,16 +37,12 @@ export class PostService {
   }
 
   // Get posts by search and filter
-  getByFilter(search: string, filter: any): Observable<Post[]> {
+  getByFilter(search: string, filter: string): Observable<Post[]> {
     let params = new HttpParams();
     if (search) {
       params = params.set('search', search);
     }
-    if (filter) {
-      Object.keys(filter).forEach((key) => {
-        params = params.set(key, filter[key]);
-      });
-    }
+    params = params.set('filter', filter);
     return this.http.get<Post[]>(`${this.baseUrl}/get-by`, { params });
   }
 }

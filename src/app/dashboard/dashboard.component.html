@@ -1,7 +1,13 @@
 <div>
     <div class="flex justify-content-center gap-2">
-        <input pInputText type="text" placeholder="Search" />
-        <p-button icon="pi pi-search" label="Search" class="p-button-outlined" />
+        <input pInputText type="text" [(ngModel)]="search" placeholder="Search" />
+        <!-- <p-dropdown [options]="filters" optionLabel="name"></p-dropdown> -->
+        <select  [(ngModel)]="selectedFilter">
+            <option value="Title">Title</option>
+            <option value="Content">Content</option>
+            <option value="Author">Author</option>
+        </select>
+        <p-button icon="pi pi-search" label="Search" class="p-button-outlined" (onClick)="filterPosts()"/>
     </div>
 
 

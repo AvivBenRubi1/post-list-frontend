@@ -17,6 +17,7 @@ export class PostComponent {
   @Output() deletePost = new EventEmitter<number>(); // EventEmitter to notify parent
 
   onDelete(): void {
+    this.postService.deletePost(this.post.id).subscribe();
     this.deletePost.emit(this.post.id); // Emit the post ID to the parent
   }
   

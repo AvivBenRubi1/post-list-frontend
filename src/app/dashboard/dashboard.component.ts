@@ -7,29 +7,37 @@ import { CommonModule } from '@angular/common'
 import { IconFieldModule } from 'primeng/iconfield'
 import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
+import { DropdownModule } from 'primeng/dropdown';
 import { PostService } from '../services/post.service';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   providers: [PostService],
-  imports: [PostComponent, ButtonModule, CardModule, CommonModule, IconFieldModule, InputIconModule, InputTextModule],
+  imports: [PostComponent, ButtonModule, CardModule, CommonModule, IconFieldModule, InputIconModule, InputTextModule, DropdownModule, FormsModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
+  selectedFilter = "Title";
+  search: string = "";
+  posts: Array<Post>;
   constructor(private postService: PostService) {
 
   }
-  refreshPosts() {
-    this.postService.getAllPosts().subscribe(fetchedPosts => {this.posts = fetchedPosts;});
+  loadPosts() {
+    this.postService.getAllPosts().subscribe(fetchedPosts => { this.posts = fetchedPosts; });
   }
   ngOnInit(): void {
-    this.refreshPosts();
+    this.loadPosts();
   }
   deletePost(id: number) {
-    this.postService.deletePost(id).subscribe();
-    this.refreshPosts();
+    this.posts = this.posts.filter(post => post.id !== id);
   }
-  posts: Array<Post>;
+
+  filterPosts() {
+    this.postService.getByFilter(this.search, this.selectedFilter).subscribe(fetchedPosts => { this.posts = fetchedPosts; })
+  }
 
 }

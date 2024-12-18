@@ -6,7 +6,7 @@ import { CreatePostDto } from '../dtos/create-post.dto';
 
 @Injectable()
 export class PostService {
-  private baseUrl = 'https://localhost:7271/test';
+  private baseUrl = 'https://localhost:7037/posts';
   
   constructor(private http: HttpClient) {}
 

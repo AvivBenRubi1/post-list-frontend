@@ -1,0 +1,50 @@
+<p-card [style]="{ width: '20rem', overflow: 'hidden' }">
+    <!-- Title Template -->
+    <ng-template pTemplate="title">
+        <input
+            pInputText
+            type="text"
+            [(ngModel)]="newPost.title"
+            placeholder="Enter title"
+        />
+    </ng-template>
+
+    <!-- Subtitle Template -->
+    <ng-template pTemplate="subtitle">
+        <input
+            pInputText
+            type="text"
+            [(ngModel)]="newPost.author"
+            placeholder="Enter author"
+        />
+    </ng-template>
+
+    <!-- Content Template -->
+    <ng-template pTemplate="content">
+        <textarea
+            pInputTextarea
+            [(ngModel)]="newPost.content"
+            placeholder="Enter content"
+        ></textarea>
+    </ng-template>
+
+    <!-- Footer Template -->
+    <ng-template pTemplate="footer">
+        <div class="flex gap-2 justify-content-end">
+            <p-button
+                label="Cancel"
+                icon="pi pi-times"
+                severity="secondary"
+                class="p-button-sm"
+                (onClick)="onCancelCreate()"
+            ></p-button>
+            <p-button
+                label="Create"
+                icon="pi pi-check"
+                severity="success"
+                class="p-button-sm"
+                (onClick)="onCreatePost()"
+            ></p-button>
+        </div>
+    </ng-template>
+</p-card>

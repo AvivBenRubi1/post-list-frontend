@@ -10,12 +10,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { PostService } from '../services/post.service';
 import { FormsModule } from '@angular/forms';
+import { CreatePostComponent } from "../shared/components/create-post/create-post.component";
+import { firstValueFrom, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   providers: [PostService],
-  imports: [PostComponent, ButtonModule, CardModule, CommonModule, IconFieldModule, InputIconModule, InputTextModule, DropdownModule, FormsModule],
+  imports: [PostComponent, ButtonModule, CardModule, CommonModule, IconFieldModule, InputIconModule, InputTextModule, DropdownModule, FormsModule, CreatePostComponent],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -35,8 +37,8 @@ export class DashboardComponent implements OnInit {
   deletePost(id: number) {
     this.posts = this.posts.filter(post => post.id !== id);
   }
-  addPost() {
-    const newPost = new Post();
+  async addPost(newPostObservable: Observable<Post>) {
+    const newPost = await firstValueFrom(newPostObservable);
     this.posts.push(newPost);
   }
   filterPosts() {

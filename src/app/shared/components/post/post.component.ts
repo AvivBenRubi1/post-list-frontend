@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { firstValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-post',
@@ -44,5 +45,9 @@ export class PostComponent {
     this.isEditing = false;
   }
   
+  async onLike() {
+    this.post.likes = await firstValueFrom(this.postService.likePost(this.post.id));
+  }
+
   @Input() post: Post;
 }

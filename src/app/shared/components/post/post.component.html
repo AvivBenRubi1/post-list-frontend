@@ -32,7 +32,7 @@
     <!-- Footer Template -->
     <ng-template pTemplate="footer">
         <div class="flex gap-2">
-            <p-button label="{{ post.likes }}" icon="pi pi-thumbs-up" class="p-button-sm"></p-button>
+            <p-button label="{{ post.likes }}" icon="pi pi-thumbs-up" class="p-button-sm" (onClick)="onLike()"></p-button>
             <p-button icon="pi pi-trash" severity="danger" class="p-button-sm" *ngIf="!isEditing"
                 (onClick)="onDelete()"></p-button>
             <p-button *ngIf="isEditing" icon="pi pi-times" severity="secondary" class="p-button-sm"

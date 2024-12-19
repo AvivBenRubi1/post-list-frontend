@@ -37,6 +37,10 @@ export class PostService {
     return this.http.patch<Post>(`${this.baseUrl}/${id}`, updatePostDto);
   }
 
+  likePost(id: number): Observable<number> {
+    return this.http.patch<number>(`${this.baseUrl}/like/${id}`,{});
+  }
+
   // Get posts by search and filter
   getByFilter(search: string, filter: string): Observable<Post[]> {
     let params = new HttpParams();

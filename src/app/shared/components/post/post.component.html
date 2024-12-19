@@ -1,12 +1,46 @@
-<p-card [style]="{ width: '20rem', overflow: 'hidden', }">
-    <ng-template pTemplate="title">{{post.title}}</ng-template>
-    <ng-template pTemplate="subtitle">{{post.author}}</ng-template>
-    <ng-template pTemplate="content">{{post.content}}</ng-template>
+<p-card [style]="{ width: '20rem', overflow: 'hidden' }">
+    <!-- Title Template -->
+    <ng-template pTemplate="title">
+        <ng-container *ngIf="!isEditing; else editTitle">
+            {{ post.title }}
+        </ng-container>
+        <ng-template #editTitle>
+            <input pInputText type="text" [(ngModel)]="updatePostDto.title" />
+        </ng-template>
+    </ng-template>
+
+    <!-- Subtitle Template -->
+    <ng-template pTemplate="subtitle">
+        <ng-container *ngIf="!isEditing; else editSubtitle">
+            {{ post.author }}
+        </ng-container>
+        <ng-template #editSubtitle>
+            <input pInputText type="text" [(ngModel)]="updatePostDto.author" />
+        </ng-template>
+    </ng-template>
+
+    <!-- Content Template -->
+    <ng-template pTemplate="content">
+        <ng-container *ngIf="!isEditing; else editContent">
+            {{ post.content }}
+        </ng-container>
+        <ng-template #editContent>
+            <textarea pInputTextarea [(ngModel)]="updatePostDto.content"></textarea>
+        </ng-template>
+    </ng-template>
+
+    <!-- Footer Template -->
     <ng-template pTemplate="footer">
         <div class="flex gap-2">
-                <p-button label="{{post.likes}}" icon="pi pi-thumbs-up" class="p-button-sm"></p-button>
-                <p-button  icon="pi pi-trash" severity="danger" class="p-button-sm" (onClick)="onDelete()"></p-button>
-                <p-button icon="pi pi-pencil" severity="success" class="p-button-sm"></p-button>
-            </div>
+            <p-button label="{{ post.likes }}" icon="pi pi-thumbs-up" class="p-button-sm"></p-button>
+            <p-button icon="pi pi-trash" severity="danger" class="p-button-sm" *ngIf="!isEditing"
+                (onClick)="onDelete()"></p-button>
+            <p-button *ngIf="isEditing" icon="pi pi-times" severity="secondary" class="p-button-sm"
+                (onClick)="onCancel()"></p-button>
+            <p-button *ngIf="!isEditing" icon="pi pi-pencil" severity="success" class="p-button-sm"
+                (onClick)="onEdit()"></p-button>
+            <p-button *ngIf="isEditing" icon="pi pi-check" severity="success" class="p-button-sm"
+                (onClick)="onSave()"></p-button>
+        </div>
     </ng-template>
 </p-card>

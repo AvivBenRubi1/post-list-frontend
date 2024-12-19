@@ -35,7 +35,10 @@ export class DashboardComponent implements OnInit {
   deletePost(id: number) {
     this.posts = this.posts.filter(post => post.id !== id);
   }
-
+  addPost() {
+    const newPost = new Post();
+    this.posts.push(newPost);
+  }
   filterPosts() {
     this.postService.getByFilter(this.search, this.selectedFilter).subscribe(fetchedPosts => { this.posts = fetchedPosts; })
   }

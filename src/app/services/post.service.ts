@@ -4,6 +4,7 @@ import { Observable, Subject } from 'rxjs';
 import { Post } from '../models/post.model';
 import { CreatePostDto } from '../dtos/create-post.dto';
 import { Filters } from '../enums/filters.enum';
+import { UpdatePostDto } from '../dtos/update-post.dto';
 
 @Injectable()
 export class PostService {
@@ -32,7 +33,7 @@ export class PostService {
   }
 
   // Update a post by ID
-  updatePost(id: number, updatePostDto: Post): Observable<Post> {
+  updatePost(id: number, updatePostDto: UpdatePostDto): Observable<Post> {
     return this.http.patch<Post>(`${this.baseUrl}/${id}`, updatePostDto);
   }
 

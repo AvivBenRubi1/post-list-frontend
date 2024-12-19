@@ -1,7 +1,5 @@
-export class Post {
-    id: number
+export class UpdatePostDto {
     title: string;
     content: string;
     author: string;
-    likes: number;
 }
